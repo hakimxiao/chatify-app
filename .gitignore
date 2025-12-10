@@ -1,0 +1,78 @@
+# ======================================================
+# NODE / GENERAL
+# ======================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+*.log
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Build / Output
+dist/
+build/
+out/
+.tmp/
+temp/
+
+# ======================================================
+# BACKEND (Express)
+# ======================================================
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.env
+backend/.env.*
+
+# PID files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ======================================================
+# FRONTEND (Vite)
+# ======================================================
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+
+# Vite cache
+.vite/
+
+# ======================================================
+# EDITOR FILES
+# ======================================================
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# JetBrains (WebStorm / IntelliJ)
+.idea/
+
+# ======================================================
+# OS FILES
+# ======================================================
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ======================================================
+# OPTIONAL: uploads / public storage
+# ======================================================
+uploads/
+public/uploads/
