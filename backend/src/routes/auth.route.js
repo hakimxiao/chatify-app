@@ -13,3 +13,5 @@ router.get("/login", (req, res) => {
 router.get("/logout", (req, res) => {
   res.send("Logout endpoint");
 });
+
+export default router;
