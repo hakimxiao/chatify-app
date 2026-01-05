@@ -1,6 +1,7 @@
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
 import User from "../models/user.model.js";
+import { toWIB } from "../lib/utils/time.js";
 
 export const getAllContacts = async (req, res) => {
   try {
@@ -72,7 +73,15 @@ export const sendMessage = async (req, res) => {
 
     // TODO: send message in real-time if user is online
 
-    res.status(200).json(newMessage);
+    // ===============================
+    // KONVERSI UTC → WIB UNTUK RESPONSE
+    // ===============================
+    const messageObj = newMessage.toObject();
+
+    messageObj.createdAtWIB = toWIB(messageObj.createdAt);
+    messageObj.updatedAtWIB = toWIB(messageObj.updatedAt);
+
+    res.status(200).json(messageObj);
   } catch (error) {
     console.log("Error in sendMessage controller", error);
     res.status(500).json({ message: "Internal Server Error" });
