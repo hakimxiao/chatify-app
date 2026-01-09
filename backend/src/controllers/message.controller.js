@@ -2,6 +2,7 @@ import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
 import User from "../models/user.model.js";
 import { toWIB } from "../lib/utils/time.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 export const getAllContacts = async (req, res) => {
   try {
@@ -71,7 +72,11 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save();
 
-    // TODO: send message in real-time if user is online
+    // TODO: send message in real-time if user is online - socket.io
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     // ===============================
     // KONVERSI UTC → WIB UNTUK RESPONSE
